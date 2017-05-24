@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gaoyuan.spring.dao.ProductCollectMapper">
+	<resultMap id="BaseResultMap"
+		type="com.gaoyuan.spring.dto.ProductCollect">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="ProductCode" property="productCode" jdbcType="VARCHAR" />
+		<result column="ProductName" property="productName" jdbcType="VARCHAR" />
+		<result column="OrderCode" property="orderCode" jdbcType="VARCHAR" />
+		<result column="ModelCode" property="modelCode" jdbcType="VARCHAR" />
+		<result column="PlanNum" property="planNum" jdbcType="INTEGER" />
+		<result column="PlanStartTime" property="planStartTime"
+			jdbcType="DATE" />
+		<result column="PlanEndTime" property="planEndTime" jdbcType="DATE" />
+		<result column="OnLineTime" property="onLineTime"
+			jdbcType="DATE" />
+		<result column="OffLineTime" property="offLineTime" jdbcType="DATE" />
+		<result column="BuzType" property="buzType" jdbcType="VARCHAR" />
+		<result column="OperatorCode" property="operatorCode" jdbcType="VARCHAR" />
+		<result column="OrderStatus" property="orderStatus" jdbcType="VARCHAR" />
+		<result column="QualityResult" property="qualityResult" jdbcType="VARCHAR" />
+
+		<result column="OperatorName" property="operatorName" jdbcType="VARCHAR" />
+		<result column="OperateNum" property="operateNum" jdbcType="VARCHAR" />
+		<result column="OperateTime" property="operateTime" jdbcType="TIMESTAMP" />
+		<result column="WorkUnitCode" property="workUnitCode" jdbcType="VARCHAR" />
+		<result column="WorkUnitName" property="workUnitName" jdbcType="VARCHAR" />
+		<result column="ClassGroupCode" property="classGroupCode"
+			jdbcType="VARCHAR" />
+		<result column="ClassGroupName" property="classGroupName"
+			jdbcType="VARCHAR" />
+		<result column="ClassLevelCode" property="classLevelCode"
+			jdbcType="VARCHAR" />
+		<result column="ClassLevelName" property="classLevelName"
+			jdbcType="VARCHAR" />
+		<result column="CreateDate" property="createDate" jdbcType="TIMESTAMP" />
+		
+		<result column="OnLineCount" property="onLineCount" jdbcType="INTEGER" />
+		<result column="OffLineCount" property="offLineCount" jdbcType="INTEGER" />
+		<result column="DiffNum" property="diffNum" jdbcType="INTEGER" />
+		<result column="FinishNum" property="finishNum" jdbcType="INTEGER" />
+		
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, ProductCode, ProductName, OrderCode, ModelCode,
+		PlanNum,
+		PlanStartTime, PlanEndTime,
+		BuzType, OperatorCode,
+		OperatorName, OperateTime, WorkUnitCode, WorkUnitName,
+		ClassGroupCode,
+		ClassLevelCode,OrderStatus
+	</sql>
+	<insert id="insertList" parameterType="com.gaoyuan.spring.dto.ProductCollect">
+		INSERT INTO Product_Collect (
+			ProductCode,
+			OrderCode,
+			QualityResult,
+			BuzType,
+			OperatorCode,
+			OperatorName,
+			OperateTime,
+			WorkUnitCode,
+			WorkUnitName,
+			ClassGroupCode,
+			ClassGroupName,
+			ClassLevelCode,
+			ClassLevelName
+		)
+  		VALUES
+		<foreach collection = "list" item = "item" index = "index" separator = ","> 
+			(#{item.productCode,jdbcType=VARCHAR},
+			#{item.orderCode,jdbcType=VARCHAR},
+			#{item.qualityResult,jdbcType=VARCHAR},
+			#{item.buzType,jdbcType=VARCHAR},
+			#{item.operatorCode,jdbcType=VARCHAR},
+			#{item.operatorName,jdbcType=VARCHAR},
+			#{item.operateTime,jdbcType=TIMESTAMP},
+			#{item.workUnitCode,jdbcType=VARCHAR},
+			#{item.workUnitName,jdbcType=VARCHAR},
+			#{item.classGroupCode,jdbcType=VARCHAR},
+			#{item.classGroupName,jdbcType=VARCHAR},
+			#{item.classLevelCode,jdbcType=VARCHAR},
+			#{item.classLevelName,jdbcType=VARCHAR})
+		</foreach>
+	</insert>
+</mapper>
